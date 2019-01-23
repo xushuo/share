@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>普通寻车详情</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/searchCar.css">
+</head>
+
+<body>
+    <header>
+        普通寻车详情
+    </header>
+    <div class="container">
+        <div class="title">
+            <div class="left">
+                <img src="imgs/icon_pu.png" alt="">
+                <div class="text" id="vehicleBrandName"></div>
+            </div>
+            <div class="right">发布时间：<span id="createdAt"></span></div>
+        </div>
+        <div class="name" id="vehicleModelName">
+
+        </div>
+        <div class="price">
+            <div class="left">
+                指导价：<span id="guidancePrice">0</span>万
+            </div>
+            <div class="right">
+                希望价：<span id="price">0</span>万
+            </div>
+        </div>
+        <div class="scan">
+            <div class="left">
+                <img src="imgs/icon_pv.png" alt="">
+                <div>
+                    <span id="pv">0</span>人浏览
+                </div>
+            </div>
+            <div class="middle">
+                <img src="imgs/icon_offer.png" alt="">
+                <div>
+                    <span id="offerNumber">0</span>人报价
+                </div>
+            </div>
+            <div class="right">
+                <img src="imgs/icon_countdown.png" alt="">
+                <div>
+                    <span id="countdownTime"></span>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="label">发布有效期</div>
+            <div class="val" id="expireType"></div>
+        </div>
+        <div class="info">
+            <div class="label">外观/内饰</div>
+            <div class="val" id="vehicleAppearanceName"></div>
+        </div>
+        <div class="info">
+            <div class="label">销售对象</div>
+            <div class="val" id="saleModel"></div>
+        </div>
+        <div class="info">
+            <div class="label">生产日期</div>
+            <div class="val" id="vehicleCreateDate"></div>
+        </div>
+        <div class="info">
+            <div class="label">上牌地区</div>
+            <div class="val" id="cityName"></div>
+        </div>
+        <div class="info">
+            <div class="label">提车区域</div>
+            <div class="val" id="takeVehicleAreaName"></div>
+        </div>
+        <div class="info">
+            <div class="label">提车时间</div>
+            <div class="val" id="takeVehicleDateName"></div>
+        </div>
+        <div class="info">
+            <div class="label">其他要求</div>
+            <div class="val" id="otherNeed"></div>
+        </div>
+        <div class="info">
+            <div class="label">备注</div>
+            <div class="val" id="remark"></div>
+        </div>
+    </div>
+    <footer onclick="jump()">
+        立即报价
+    </footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script>
+    let id = '';
+    let ip = 'http://114.115.166.79:8030';
+    $(function () {
+
+        console.log(GetQueryString('id'))
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        id = GetQueryString('id');
+        let data = {
+            "id": 12355,
+            "vehicleBrandId": 171,
+            "vehicleBrandName": "阿尔法-罗密欧",
+            "vehicleSeriesId": 1738,
+            "vehicleSeriesName": "Giulia",
+            "vehicleModelId": 140983,
+            "vehicleModelName": "阿尔法-罗密欧 Giulia 2017款 2.0T 手自一体 200HP 精英版",
+            "yearModel": 2017,
+            "vehicleAppearanceId": 446059,
+            "vehicleAppearanceName": "阿尔法红",
+            "vehicleInteriorId": 0,
+            "vehicleInteriorName": "",
+            "customAppearanceName": "",
+            "customInteriorName": "给",
+            "standard": 0,
+            "guidancePrice": 33.08,
+            "vehicleType": 0,
+            "vehicleTypeName": "",
+            "preferentialType": 5,
+            "preferentialNumber": 33.0,
+            "price": 33.00,
+            "provinceCode": "110000",
+            "provinceName": "北京市",
+            "cityCode": "110100",
+            "cityName": "北京城区",
+            "vehicleNumber": 0,
+            "takeVehicleArea": 0,
+            "takeVehicleAreaName": "全国",
+            "remark": "",
+            "expireType": 1,
+            "expireTypeName": "24小时内",
+            "otherNeed": "店票,现车,手续随车,手续齐全",
+            "pv": 1,
+            "createdAt": "2019-01-21 18:07",
+            "depositType": 0,
+            "customerId": 7619,
+            "countdownTime": 5720023,
+            "offerNumber": 0,
+            "type": 0,
+            "status": 0,
+            "expireStatus": 10,
+            "messageContent": "花生好车需要阿尔法-罗密欧 Giulia 2017款 2.0T 手自一体 200HP 精英版，上牌城市北京城区,请登录快买车app进行报价。点击http://test-portal.kuaimaiche360.com/jump?type=1&id=12355",
+            "canCreateOrder": 0,
+            "lineStatus": 1,
+            "saleModel": 2,
+            "vehicleDemandId": 12355
+        };
+        $.ajax({
+            url: ip + '/api/vehicleDemand/findVehicleDemand?vehicleDemandId=' + id,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (data) {
+                console.log(data);
+                data = data;
+            }
+        })
+        $("#vehicleBrandName").html(data.vehicleBrandName)
+        $("#createdAt").html(data.createdAt)
+        $("#vehicleModelName").html(data.vehicleModelName)
+        $("#guidancePrice").html(data.guidancePrice)
+        $("#price").html(data.price)
+        $("#pv").html(data.pv)
+        $("#offerNumber").html(data.offerNumber)
+        $("#countdownTime").html(leftTimer(data.countdownTime))
+        $("#expireTypeName").html(data.expireTypeName)
+        $("#vehicleAppearanceName").html(data.vehicleAppearanceName + "/" + data.vehicleInteriorName)
+        if (data.saleModel == '1') {
+            $("#saleModel").html("公户")
+        }
+        if (data.saleModel == '2') {
+            $("#saleModel").html("私户")
+        }
+        $("#vehicleCreateDateName").html(data.vehicleCreateDateName)
+        $("#cityName").html(data.cityName)
+        $("#takeVehicleAreaName").html(data.takeVehicleAreaName)
+        $("#takeVehicleDateName").html(data.takeVehicleDateName)
+        $("#pricotherNeede").html(data.otherNeed)
+        $("#remark").html(data.remark)
+        // $.getJSON("http://10.4.128.118:8040/portal/returnVisit/messagePage/updateCustomerStatusById?id=11&jsoncallback=?", function(json) {
+        //     console.log(json)
+        // });
+
+        function leftTimer(ms) {
+            var days = parseInt(ms / 1000 / 60 / 60 / 24, 10); //计算剩余的天数 
+            var hours = parseInt(ms / 1000 / 60 / 60 % 24, 10); //计算剩余的小时 
+            var minutes = parseInt(ms / 1000 / 60 % 60, 10); //计算剩余的分钟 
+            days = checkTime(days);
+            hours = checkTime(hours);
+            minutes = checkTime(minutes);
+            //  console.log(days + "天" + hours + "小时" + minutes + "分")
+            return days + "天" + hours + "小时" + minutes + "分"
+        }
+
+        function checkTime(i) { //将0-9的数字前面加上0，例1变为01 
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    })
+
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            window.location = "kuaimaiche://kuaimaiche.com?type=1&id=" + id;
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            window.location = "kuaimaiche://kuaimaiche.com?type=1&id=" + id;
+        }
+    }
+</script>
+
+</html>

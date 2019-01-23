@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>车源详情</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/carDetail.css">
+</head>
+
+<body>
+    <header>
+        车源详情
+    </header>
+    <div class="container">
+        <div class="title">
+            <div class="left">
+                <img src="imgs/icon_pu.png" alt="">
+                <div class="text" id="vehicleBrandName"></div>
+            </div>
+            <div class="right">发布时间：<span id="createdAt"></span></div>
+        </div>
+        <div class="name" id="vehicleModelName"></div>
+        <div class="price">
+            <div class="left">
+                指导价：<span id="guidancePrice">0</span>万
+            </div>
+            <div class="right">
+                销售价：<span id="price">0</span>万
+            </div>
+        </div>
+        <div class="scan">
+            <div class="left">
+                <img src="imgs/icon_pv.png" alt="">
+                <div>
+                    浏览次数：<span id="pv">0</span>
+                </div>
+            </div>
+            <div class="middle">
+                <img src="imgs/icon_price.png" alt="">
+                <div>
+                    销量：<span id="volume">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="label">外观/内饰</div>
+            <div class="val" id="vehicleAppearanceName"></div>
+        </div>
+        <div class="info">
+            <div class="label">生产日期</div>
+            <div class="val" id="vehicleCreateDate"></div>
+        </div>
+        <div class="info">
+            <div class="label">车源数量</div>
+            <div class="val" id="vehicleNumber"></div>
+        </div>
+        <div class="info">
+            <div class="label">车源所在地</div>
+            <div class="val" id="vehicleSourceAreaName"></div>
+        </div>
+        <div class="info">
+            <div class="label">可售区域</div>
+            <div class="val" id="salesAreaName"></div>
+        </div>
+        <div class="info">
+            <div class="label">车辆类型</div>
+            <div class="val" id="vehicleTypeName"></div>
+        </div>
+        <div class="info">
+            <div class="label">手续情况</div>
+            <div class="val" id="proceduresTypeName"></div>
+        </div>
+        <div class="info">
+            <div class="label">提车时间</div>
+            <div class="val" id="takeVehicleDateName"></div>
+        </div>
+        <div class="info">
+            <div class="label">发票类型</div>
+            <div class="val" id="billTypeName"></div>
+        </div>
+        <div class="info">
+            <div class="label">开票方式</div>
+            <div class="val" id="billSourceName"></div>
+        </div>
+        <div class="info">
+            <div class="label">备注</div>
+            <div class="val" id="remark"></div>
+        </div>
+        <div class="infoImg">
+            <div class="label">图片</div>
+            <div class="val" id="imgs"></div>
+        </div>
+    </div>
+    <div class="company">
+        <img src="imgs/my_user_image.png" alt="">
+        <div class="info">
+            <div class="name" id="companyName"></div>
+            <div class="desc">
+                在售车源：<span id="vehicleSourceNum">0</span>
+            </div>
+        </div>
+    </div>
+    <footer onclick="jump()">
+        联系卖家
+    </footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script>
+    let id = '';
+    let ip = 'http://114.115.166.79:8030'
+    $(function () {
+
+        console.log(GetQueryString('id'))
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        id = GetQueryString('id');
+        let data = {
+            "id": 2527,
+            "customerId": 7601,
+            "customerName": "测测测",
+            "vehicleBrandId": 75,
+            "vehicleBrandName": "奥迪",
+            "vehicleSeriesId": 3,
+            "vehicleSeriesName": "DS 5LS ddd",
+            "vehicleModelId": 79,
+            "vehicleModelName": "DS DS 5LS 2018款 1.6THP 手自一体 30THP 时尚型",
+            "yearModel": 2018,
+            "vehicleAppearanceId": 511,
+            "vehicleAppearanceName": "珍珠白",
+            "customInteriorName": "我亲戚",
+            "standard": 1,
+            "standardName": "中规",
+            "guidancePrice": 16.88,
+            "vehicleType": 1,
+            "vehicleTypeName": "现车",
+            "preferentialType": 2,
+            "preferentialTypeName": "优惠万数",
+            "preferentialNumber": 11,
+            "price": 5.78,
+            "vehicleNumber": 1,
+            "salesArea": 0,
+            "vehicleImgPath": "/0/2019-01/2019-01-19-20v9opRc.png,/0/2019-01/2019-01-19-fiih39U7.png",
+            "pv": 23,
+            "createdAt": "2019-01-21 18:28",
+            "vehicleSourceArea": 0,
+            "vehicleSourceAreaName": "全国",
+            "salesAreaName": "全国",
+            "collectionStatus": false,
+            "volume": 0,
+            "priceCompare": 0,
+            "lineStatus": 1,
+            "vehicleProvinceCode": "110000",
+            "vehicleProvinceName": "北京市",
+            "vehicleCityCode": "110100",
+            "vehicleCityName": "北京城区",
+            "saleAreaDetailName": "全国",
+            "saleChannel": "1",
+            "saleModel": 0,
+            "deposit": 123,
+            "containLogistics": 0,
+            "paymentType": 1,
+            "syncStatus": 1,
+            "companyId": 5575,
+            "companyName": "方法大",
+            "phoneNumber": "18618475405",
+            "companyOrderNum": 0,
+            "vehicleSourceNum": 11,
+            "companyType": 2,
+            "companyCreatedAt": "2019-01-08 18:49:19",
+            "provinceCode": "120000",
+            "provinceName": "天津市",
+            "cityCode": "120100",
+            "cityName": "天津城区"
+        };
+        $.ajax({
+            url: ip + '/api/vehicleSource/findVehicleSource?vehicleSourceId=' + id,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (data) {
+                console.log(data);
+                data = data;
+            }
+        })
+        $("#vehicleBrandName").html(data.vehicleBrandName)
+        $("#createdAt").html(data.createdAt)
+        $("#vehicleModelName").html(data.vehicleModelName)
+        $("#guidancePrice").html(data.guidancePrice)
+        $("#price").html(data.price)
+        $("#pv").html(data.pv)
+        $("#volume").html(data.volume)
+        $("#vehicleAppearanceName").html(data.vehicleAppearanceName + "/" + data.vehicleInteriorName)
+        $("#vehicleCreateDateName").html(data.vehicleCreateDateName)
+        $("#vehicleNumber").html(data.vehicleNumber)
+        $("#vehicleSourceAreaName").html(data.vehicleSourceAreaName)
+        $("#salesAreaName").html(data.salesAreaName)
+        $("#vehicleTypeName").html(data.vehicleTypeName)
+        $("#proceduresTypeName").html(data.proceduresTypeName)
+        $("#takeVehicleDateName").html(data.takeVehicleDateName)
+        $("#billTypeName").html(data.billTypeName)
+        $("#billSourceName").html(data.billSourceName)
+        $("#remark").html(data.remark)
+
+        let imgs = data.vehicleImgPath.split(',')
+        let str = '';
+        imgs.map(e => {
+            str += '<img src="' + ip + e + '">'
+        })
+        $("#imgs").html(str + str + str)
+
+        $("#companyName").html(data.companyName)
+        $("#vehicleSourceNum").html(data.vehicleSourceNum)
+        // $.getJSON("http://10.4.128.118:8040/portal/returnVisit/messagePage/updateCustomerStatusById?id=11&jsoncallback=?", function(json) {
+        //     console.log(json)
+        // });
+    })
+
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            window.location = "kuaimaiche://kuaimaiche.com?type=1&id=" + id;
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            window.location = "kuaimaiche://kuaimaiche.com?type=1&id=" + id;
+        }
+    }
+</script>
+
+</html>
