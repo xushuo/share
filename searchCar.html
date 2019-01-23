@@ -11,13 +11,14 @@
 </head>
 
 <body>
-    <header>
+    <header id="title">
         普通寻车详情
     </header>
     <div class="container">
         <div class="title">
             <div class="left">
-                <img src="imgs/icon_pu.png" alt="">
+                <img src="imgs/icon_pu.png" alt="" id="type1">
+                <img src="imgs/icon_hs.png" alt="" id="type2">
                 <div class="text" id="vehicleBrandName"></div>
             </div>
             <div class="right">发布时间：<span id="createdAt"></span></div>
@@ -171,6 +172,17 @@
                 data = data;
             }
         })
+        if (data.type == 2) {
+            $("#type1").hide()
+            $("#type2").show()
+            $("#title").html('花生寻车详情');
+            document.title = '花生寻车详情';
+        } else {
+            $("#type1").show()
+            $("#type2").hide()
+            $("#title").html('普通寻车详情');
+            document.title = '普通寻车详情';
+        }
         $("#vehicleBrandName").html(data.vehicleBrandName)
         $("#createdAt").html(data.createdAt)
         $("#vehicleModelName").html(data.vehicleModelName)
@@ -178,7 +190,11 @@
         $("#price").html(data.price)
         $("#pv").html(data.pv)
         $("#offerNumber").html(data.offerNumber)
-        $("#countdownTime").html(leftTimer(data.countdownTime))
+        if (data.countdownTime < 0) {
+            $("#countdownTime").html('已过期')
+        } else {
+            $("#countdownTime").html(leftTimer(data.countdownTime))
+        }
         $("#expireTypeName").html(data.expireTypeName)
         $("#vehicleAppearanceName").html(data.vehicleAppearanceName + "/" + data.vehicleInteriorName)
         if (data.saleModel == '1') {
@@ -198,6 +214,9 @@
         // });
 
         function leftTimer(ms) {
+            if (ms < 0) {
+                return '已过期'
+            }
             var days = parseInt(ms / 1000 / 60 / 60 / 24, 10); //计算剩余的天数 
             var hours = parseInt(ms / 1000 / 60 / 60 % 24, 10); //计算剩余的小时 
             var minutes = parseInt(ms / 1000 / 60 % 60, 10); //计算剩余的分钟 

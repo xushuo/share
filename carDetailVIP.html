@@ -5,31 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>车源详情</title>
+    <title>VIP车源详情</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/carDetail.css">
+    <link rel="stylesheet" href="css/carDetailVIP.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
 </head>
 
 <body>
     <header>
-        车源详情
+        VIP车源详情
     </header>
+    <div class="banner">
+        <div class="swiper-container" id="investproSwiper">
+            <div class="swiper-wrapper" id="imgs">
+                <!-- <div class="swiper-slide">
+                    <div class="investpro">
+                        <img src="imgs/1.jpg" alt="">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="title">
-            <div class="left">
-                <div class="text" id="vehicleBrandName"></div>
-            </div>
-            <div class="right">发布时间：<span id="createdAt"></span></div>
-        </div>
-        <div class="name" id="vehicleModelName"></div>
-        <div class="price">
-            <div class="left">
-                指导价：<span id="guidancePrice">0</span>万
-            </div>
-            <div class="right">
-                销售价：<span id="price">0</span>万
-            </div>
-        </div>
         <div class="scan">
             <div class="left">
                 <img src="imgs/icon_pv.png" alt="">
@@ -43,55 +40,57 @@
                     销量：<span id="volume">0</span>
                 </div>
             </div>
+            <div class="right">
+                <img src="imgs/icon_price.png" alt="">
+                <div>
+                    信用分：<span id="creditScore">0</span>
+                </div>
+            </div>
         </div>
+        <div class="title">
+            <div class="left">
+                <div class="text" id="vehicleBrandName"></div>
+            </div>
+            <div class="right"> 销售价：<span id="price">0</span>万</div>
+        </div>
+        <div class="name" id="vehicleModelName"></div>
+        <div class="price">
+            <div class="left">
+                指导价：<span id="guidancePrice">0</span>万
+            </div>
+            <div class="right">
+                发布时间：<span id="createdAt"></span>
+            </div>
+        </div>
+
+        <div class="section">车源详情</div>
         <div class="info">
             <div class="label">外观/内饰</div>
             <div class="val" id="vehicleAppearanceName"></div>
         </div>
         <div class="info">
-            <div class="label">生产日期</div>
-            <div class="val" id="vehicleCreateDate"></div>
+            <div class="label">支付方式</div>
+            <div class="val" id="paymentType"></div>
         </div>
         <div class="info">
             <div class="label">车源数量</div>
             <div class="val" id="vehicleNumber"></div>
         </div>
         <div class="info">
+            <div class="label">销售对象</div>
+            <div class="val" id="saleModel"></div>
+        </div>
+        <div class="info">
             <div class="label">车源所在地</div>
             <div class="val" id="vehicleSourceAreaName"></div>
         </div>
-        <div class="info">
+        <div class="info area">
             <div class="label">可售区域</div>
             <div class="val" id="salesAreaName"></div>
         </div>
-        <div class="info">
-            <div class="label">车辆类型</div>
-            <div class="val" id="vehicleTypeName"></div>
-        </div>
-        <div class="info">
-            <div class="label">手续情况</div>
-            <div class="val" id="proceduresTypeName"></div>
-        </div>
-        <div class="info">
-            <div class="label">提车时间</div>
-            <div class="val" id="takeVehicleDateName"></div>
-        </div>
-        <div class="info">
-            <div class="label">发票类型</div>
-            <div class="val" id="billTypeName"></div>
-        </div>
-        <div class="info">
-            <div class="label">开票方式</div>
-            <div class="val" id="billSourceName"></div>
-        </div>
-        <div class="info">
-            <div class="label">备注</div>
-            <div class="val" id="remark"></div>
-        </div>
-        <div class="infoImg">
-            <div class="label">图片</div>
-            <div class="val" id="imgs"></div>
-        </div>
+
+        <div class="section">买车信息</div>
+        <div class="tabs" id="otherInfo"></div>
     </div>
     <div class="company">
         <img src="imgs/my_user_image.png" alt="">
@@ -108,6 +107,7 @@
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script src="js/flexible.js"></script>
+<script src="js/swiper.min.js"></script>
 <script>
     let id = '';
     let ip = 'http://114.115.166.79:8030'
@@ -199,28 +199,55 @@
         $("#guidancePrice").html(data.guidancePrice)
         $("#price").html(data.price)
         $("#pv").html(data.pv)
-        $("#volume").html(data.volume)
+        $("#creditScore").html(data.creditScore)
         $("#vehicleAppearanceName").html(data.vehicleAppearanceName + "/" + data.vehicleInteriorName)
-        $("#vehicleCreateDateName").html(data.vehicleCreateDateName)
         $("#vehicleNumber").html(data.vehicleNumber)
         $("#vehicleSourceAreaName").html(data.vehicleSourceAreaName)
+        if (data.saleModel == '1') {
+            $("#saleModel").html('公户')
+        }
+        if (data.saleModel == '2') {
+            $("#saleModel").html('私户')
+        }
+        if (data.paymentType == '0') {
+            $("#paymentType").html('全款')
+        }
+        if (data.paymentType == '1') {
+            $("#paymentType").html('订金+尾款')
+        }
         $("#salesAreaName").html(data.salesAreaName)
-        $("#vehicleTypeName").html(data.vehicleTypeName)
-        $("#proceduresTypeName").html(data.proceduresTypeName)
-        $("#takeVehicleDateName").html(data.takeVehicleDateName)
-        $("#billTypeName").html(data.billTypeName)
-        $("#billSourceName").html(data.billSourceName)
-        $("#remark").html(data.remark)
 
         let imgs = data.vehicleImgPath.split(',')
         let str = '';
         imgs.map(e => {
-            str += '<img src="' + ip + e + '">'
+            str +=
+                `<div class="swiper-slide">
+                    <div class="investpro">
+                        <img src="${ip+e}" alt="">
+                    </div>
+                </div>`;
         })
         $("#imgs").html(str)
 
+        var abcSwiper = new Swiper("#investproSwiper", {
+            slidesPerView: 'auto', //设置slider容器能够同时显示的slides数量
+            centeredSlides: true, //设定为true时，活动块会居中，而不是默认状态下的居左。
+            speed: 500,
+        });
+        if (data.otherInfo) {
+            let infos = data.otherInfo.split(',')
+            str = '';
+            infos.map(e => {
+                str +=
+                    `<div class="tab">${e}</div>`;
+            })
+            $("#otherInfo").html(str)
+        }
+
         $("#companyName").html(data.companyName)
         $("#vehicleSourceNum").html(data.vehicleSourceNum)
+
+
         // $.getJSON("http://10.4.128.118:8040/portal/returnVisit/messagePage/updateCustomerStatusById?id=11&jsoncallback=?", function(json) {
         //     console.log(json)
         // });
@@ -238,7 +265,7 @@
                     }
                 },
                 1000);
-            window.location = "kuaimaiche://kuaimaiche.com?type=2&id=" + id;
+            window.location = "kuaimaiche://kuaimaiche.com?type=3&id=" + id;
         } else if (navigator.userAgent.match(/android/i)) {
             let loadDateTime = new Date();
             window.setTimeout(function () {
@@ -250,7 +277,7 @@
                     }
                 },
                 1000);
-            window.location = "kuaimaiche://kuaimaiche.com?type=2&id=" + id;
+            window.location = "kuaimaiche://kuaimaiche.com?type=3&id=" + id;
         }
     }
 </script>

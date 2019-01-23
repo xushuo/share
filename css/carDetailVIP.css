@@ -1,0 +1,369 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: PingFangSC-Regular, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    width: 100%;
+    height: 1.173333rem
+        /* 88/75 */
+    ;
+    background-color: #fff;
+    font-size: .48rem;
+    /* 36/75 */
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.173333rem
+        /* 88/75 */
+    ;
+}
+
+.banner {
+    background-color: #fff;
+}
+
+.swiper-container {
+    height: 4.8rem
+        /* 360/75 */
+    ;
+}
+
+#investproSwiper {}
+
+#investproSwiper .swiper-slide {
+    width: 6.666667rem
+        /* 500/75 */
+    ;
+    height: 4.533333rem
+        /* 340/75 */
+    ;
+}
+
+#investproSwiper .swiper-slide .investpro {
+    width: 5.82rem
+        /* 480/75 */
+    ;
+    height: 4rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+    -webkit-transition: all 0.5s linear;
+}
+
+#investproSwiper .swiper-slide-active .investpro {
+    width: 6.933333rem
+        /* 520/75 */
+    ;
+    height: 4.533333rem
+        /* 340/75 */
+    ;
+    margin-left: -.08rem;
+    margin-top: .12rem;
+}
+
+.investpro img {
+    width: 100%;
+    height: 100%;
+    border-radius: .133333rem
+        /* 10/75 */
+    ;
+}
+
+.container {
+    background-color: #fff;
+}
+
+.container>div {
+    min-height: 1.173333rem
+        /* 88/75 */
+    ;
+    padding: 0 .4rem;
+    /* 30/75 */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container>.title {
+    justify-content: space-between;
+}
+
+.container>.title>.left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+    color: #333;
+    font-weight: bold;
+}
+
+.container>.title>.right {
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    color: #999;
+}
+
+.container>.title>.left>img {
+    width: .746667rem;
+    /* 56/75 */
+    height: .746667rem;
+    /* 56/75 */
+    margin-right: .266667rem
+        /* 20/75 */
+}
+
+.container>.name {
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    color: #666;
+
+}
+
+.container>.price {
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    color: #999;
+    justify-content: space-between;
+}
+
+
+.container>.name {
+    min-height: .586667rem
+        /* 44/75 */
+    ;
+    height: .586667rem
+        /* 44/75 */
+    ;
+}
+
+.container>.title>.right {
+    color: #fb352a;
+}
+
+
+
+.container>.price {
+    border-bottom: .013333rem
+        /* 1/75 */
+        solid #dcdcdc;
+}
+
+.container>.area {
+    border-bottom: .013333rem
+        /* 1/75 */
+        solid #dcdcdc;
+}
+
+.container>.section {
+    margin: .4rem .4rem 0;
+    /* 30/75 */
+    ;
+    border-left: .026667rem
+        /* 2/75 */
+        solid rgb(237, 65, 74);
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+    color: #333;
+    font-weight: bold;
+    padding-left: .2rem;
+    height: .5rem
+        /* 44/75 */
+    ;
+    max-height: .5rem
+        /* 44/75 */
+    ;
+    min-height: .5rem
+        /* 44/75 */
+    ;
+}
+
+.container>.scan {
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    border-bottom: .013333rem
+        /* 1/75 */
+        solid #dcdcdc;
+}
+
+.container>.scan>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: .533333rem
+        /* 40/75 */
+    ;
+}
+
+.container>.scan>div>img {
+    width: .426667rem
+        /* 32/75 */
+    ;
+    height: .4rem
+        /* 30/75 */
+    ;
+    margin-right: .133333rem
+        /* 10/75 */
+}
+
+.container>.info {
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+    color: #999;
+
+}
+
+.container>.info>.label {
+    width: 2.4rem
+        /* 180/75 */
+}
+
+.container>.info>.val {
+    color: #666;
+    width: 6.666667rem
+        /* 500/75 */
+    ;
+}
+
+
+.container>.tabs {
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+    color: #999;
+    border-bottom: .013333rem
+        /* 1/75 */
+        solid #dcdcdc;
+    display: flex;
+    flex-direction: row;
+    padding-top: .133333rem;
+    flex-wrap: wrap;
+    /* 10/75 */
+    ;
+    padding-bottom: .133333rem
+        /* 10/75 */
+    ;
+}
+
+.container>.tabs>.tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+    background-color: #f7f7f7;
+    color: #999;
+    border-radius: .053333rem
+        /* 4/75 */
+    ;
+    padding: .266667rem;
+    margin: .133333rem
+        /* 10/75 */
+    ;
+}
+
+.company {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1.22rem;
+}
+
+.company>img {
+    width: 1.6rem
+        /* 120/75 */
+    ;
+    height: 1.6rem
+        /* 120/75 */
+    ;
+}
+
+.company>.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    color: #999;
+}
+
+.company>.info>.name {
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+    color: #333;
+    margin-bottom: .2rem
+        /* 15/75 */
+    ;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    font-size: .4rem
+        /* 30/75 */
+    ;
+    background-color: #f03932;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.173333rem
+        /* 88/75 */
+    ;
+}
+
+/* 
+footer {
+    margin-top: .266667rem
+    ;
+    background-color: #fff;
+}
+
+footer>.title {
+    font-size: .293333rem
+    ;
+    color: #fb352a;
+    border-left: .066667rem
+        solid #fb352a;
+    height: 1.173333rem
+    ;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: .266667rem
+    ;
+    border-bottom: .013333rem
+        solid #dcdcdc;
+}
+
+footer>.title>.infos>.info>.baojia {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: .706667rem
+    ;
+    height: .653333rem
+    ;
+} */
