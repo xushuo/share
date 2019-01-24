@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商家信息</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/sale.css">
+</head>
+
+<body>
+    <header id="title">
+        商家信息
+    </header>
+    <div class="company">
+        <div class="row1">
+            <img src="imgs/my_user_image.png" alt="">
+            <div class="info">
+                <div class="name" id="companyName"></div>
+                <div class="desc">
+                    <div id="addr"></div>
+                    <div class="stars">
+                        <img src="imgs/icon_star_one.png" alt="">
+                        <img src="imgs/icon_star_one.png" alt="">
+                        <img src="imgs/icon_star_one.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row2">
+            入驻：<span id="companyCreatedAt"></span>
+            车源：<span id="vehicleSourceNum">0</span>
+            成交：<span id="companyOrderNum">0</span>
+        </div>
+        <div class="row3">
+            <div>
+                <img src="imgs/my_person_auth2.png" alt="">
+                已企业注册
+            </div>
+            <div>
+                <img src="imgs/my_company_auth2.png" alt="">
+                已企业认证
+            </div>
+        </div>
+    </div>
+    <div class="sales">
+        <div class="row1">在售品牌</div>
+        <div class="row2" id="imgs">
+            <!--  <img src="imgs/my_user_image.png" alt="">
+            <img src="imgs/my_user_image.png" alt="">
+            <img src="imgs/my_user_image.png" alt="">
+            <img src="imgs/my_user_image.png" alt="">
+            <img src="imgs/my_user_image.png" alt="">
+            <img src="imgs/my_user_image.png" alt=""> -->
+        </div>
+    </div>
+    <div class="drivers">
+        <div class="row1">在售车源</div>
+        <div class="row2" id="orders">
+          <!--   <div class="order">
+                <div class="info1">
+                    <div class="name">撒飒飒撒飒飒撒飒飒撒飒飒</div>
+                    <div class="price">
+                        <span class="red">saa万</span>/下<span class="">saa万</span>
+                    </div>
+                </div>
+                <div class="info2">
+                    指导价：<span>22</span>万
+                </div>
+                <div class="info2">
+                    内啊啊饰asd
+                </div>
+                <div class="info3">
+                    <div class="left">
+                        <div class="tab">车源地：<span>东区</span></div>
+                        <div class="tab">可售区域：<span>东区</span></div>
+                    </div>
+                    <div class="right">12-2-12-12</div>
+                </div>
+                <div class="info4">
+                    <img src="imgs/icon_qi.png" alt="">
+                    <img src="imgs/icon_support.png" alt="">
+                    <img src="imgs/icon_4s.png" alt="">
+                    <img src="imgs/icon_port.png" alt="">
+                    <div class="">保SaaS撒飒飒</div>
+                </div>
+            </div>
+            <div class="orderVIP">
+                <div class="info1">
+                    <div class="name">撒飒飒撒飒飒撒飒飒撒飒飒</div>
+                </div>
+                <div class="info2">
+                    内啊啊饰asd
+                </div>
+                <div class="info3">
+                    <div>
+                        指导价：<span>11</span>万
+                    </div>
+                    <div>
+                        优惠：<span>11</span>万
+                    </div>
+                    <div>
+                        销售价：<span>11</span>万
+                    </div>
+                </div>
+                <div class="info3">
+                    <div>
+                        销量：<span>11</span>
+                    </div>
+                    <div>
+                        信用分：<span>11</span>
+                    </div>
+                    <div>
+                        库存：<span>11</span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <footer onclick="jump()">
+        联系商家
+    </footer>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script>
+    let id = ''; //companyId
+    let saleChannel = ''; //1  普通  2 VIP
+    let page = 0;
+    let size = 10;
+    let data = null;
+    let ip = 'http://114.115.166.79:8030';
+    $(function () {
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        id = GetQueryString('id');
+        saleChannel = GetQueryString('saleChannel');
+        data = {
+            "list": [{
+                "cityCode": "string",
+                "cityName": "string",
+                "companyCreatedAt": "2019-01-24T02:35:18.848Z",
+                "companyId": 0,
+                "companyName": "string",
+                "companyOrderNum": 0,
+                "companyType": 0,
+                "createdAt": "2019-01-24T02:35:18.848Z",
+                "creditScore": 0,
+                "customAppearanceName": "string",
+                "customInteriorName": "string",
+                "customModelName": "string",
+                "guidancePrice": 0,
+                "guidancePriceAlias": 0,
+                "id": 0,
+                "inventory": 0,
+                "lastModifiedAt": "2019-01-24T02:35:18.848Z",
+                "lineStatus": 0,
+                "orderNumber": 0,
+                "phoneNumber": "string",
+                "preferentialNumber": 0,
+                "preferentialType": 0,
+                "preferentialTypeName": "string",
+                "price": 0,
+                "priceDifference": 0,
+                "provinceCode": "string",
+                "provinceName": "string",
+                "pv": 0,
+                "saleAreaDetailCode": "string",
+                "saleAreaDetailName": "string",
+                "saleChannel": 0,
+                "salesArea": 0,
+                "salesAreaName": "string",
+                "status": 0,
+                "syncStatus": 0,
+                "vehicleAppearanceId": 0,
+                "vehicleAppearanceName": "string",
+                "vehicleBrandId": 0,
+                "vehicleBrandName": "string",
+                "vehicleCityName": "string",
+                "vehicleInteriorId": 0,
+                "vehicleInteriorName": "string",
+                "vehicleModelId": 0,
+                "vehicleModelName": "string",
+                "vehicleModelNameAlias": "string",
+                "vehicleNumber": 0,
+                "vehicleProvinceName": "string",
+                "vehicleSeriesId": 0,
+                "vehicleSeriesName": "string",
+                "vehicleSourceArea": 0,
+                "vehicleSourceAreaName": "string",
+                "vehicleSourceNum": 0,
+                "vehicleType": 0,
+                "vehicleTypeName": "string",
+                "yearModel": 0
+            }],
+            "total": 0
+        };
+        getList();
+        getSales();
+        getCompany();
+        var totalHeight = 0; //定义一个总高度变量
+        function ata() { //loa动态加载数据
+            totalHeight = parseFloat($(window).height()) + parseFloat($(window).scrollTop()) + 88; //浏览器的高度加上滚动条的高度
+            if ($(document).height() <= totalHeight) { //当文档的高度小于或者等于总的高度时，开始动态加载数据
+                //加载数据
+                console.log(123)
+                getList()
+                // $("#orders").append(str)
+            }
+        }
+        $(window).scroll(function () {
+            console.log("滚动条到顶部的垂直高度：" + $(window).scrollTop());
+            console.log("页面的文档高度：" + $(document).height());
+            console.log("浏览器的高度：" + $(window).height());
+            ata();
+        })
+
+    })
+
+    function getList() {
+        page++;
+        $.ajax({
+            url: `${ip}/api/vehicleSource/listVehicleSource?companyId=${id}&page=${page}&size=${size}`,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (data) {
+                console.log(data);
+                data = data;
+                let str = '';
+                //普通
+                if (saleChannel == '1') {
+                    data.list.map(e => {
+                        str +=
+                            `<div class="order">
+                    <div class="info1">
+                        <div class="name">${e.vehicleModelName}</div>
+                        <div class="price">
+                            <span class="red">${e.price}万</span>/${e.guidancePrice-e.price>0?'下':'上'}<span class="">${e.guidancePrice-e.price>0?e.guidancePrice-e.price:e.price-e.guidancePrice}万</span>
+                        </div>
+                    </div>
+                    <div class="info2">
+                        指导价：<span>${e.guidancePrice}</span>万
+                    </div>
+                    <div class="info2">${e.vehicleAppearanceName+'/'+e.vehicleInteriorName}</div>
+                    <div class="info3">
+                        <div class="left">
+                            <div class="tab">车源地：<span>${e.vehicleSourceAreaName}</span></div>`;
+                        let salesArea = '';
+                        if (e.salesArea == 8) {
+                            if (e.saleAreaDetailName) {
+                                let temp = e.saleAreaDetailName.split(',')
+                                if (temp.length > 1) {
+                                    salesArea =
+                                        `<div class="tab">可售区域：<span>${temp[0]+'等'}</span></div>`
+                                } else {
+                                    salesArea =
+                                        `<div class="tab">可售区域：<span>${temp[0]}</span></div>`
+                                }
+                            }
+                        } else {
+                            salesArea =
+                                `<div class="tab">可售区域：<span>${e.salesAreaName}</span></div>`
+                        }
+                        str += salesArea +
+                            `</div>
+                        <div class="right">${e.createdAt}</div>
+                    </div>
+                    <div class="info4">`;
+                        if (e.companyType == '1') {
+                            str += `<img src="imgs/icon_4s.png" alt="">`
+                        }
+                        if (e.companyType == '2') {
+                            str += `<img src="imgs/icon_port.png" alt="">`
+                        }
+                        if (e.companyType == '3') {
+                            str += `<img src="imgs/icon_zi.png" alt="">`
+                        }
+                        if (e.companyType == '4') {
+                            str += `<img src="imgs/icon_zhan.png" alt="">`
+                        }
+                        str +=
+                            `<div class="">${e.companyName}</div>
+                    </div>
+                </div>`;
+                    })
+                }
+                //VIP
+                if (saleChannel == '2') {
+                    data.list.map(e => {
+                        str +=
+                            `<div class="orderVIP">
+                                <div class="info1">
+                                    <div class="name">${e.vehicleModelName}</div>
+                                </div>
+                                <div class="info2">${e.vehicleAppearanceName+'/'+e.vehicleInteriorName}</div>
+                                <div class="info3">
+                                    <div>
+                                        指导价：<span>${e.guidancePrice}</span>万
+                                    </div>
+                                    <div>
+                                        ${e.guidancePrice-e.price>0?'优惠':'加价'}：<span>${e.guidancePrice-e.price>0?e.guidancePrice-e.price:e.price-e.guidancePrice}</span>万
+                                    </div>
+                                    <div>
+                                        销售价：<span>${e.price}</span>万
+                                    </div>
+                                </div>
+                                <div class="info3">
+                                    <div>
+                                        销量：<span>${e.orderNumber}</span>
+                                    </div>
+                                    <div>
+                                        信用分：<span>${e.creditScore}</span>
+                                    </div>
+                                    <div>
+                                        库存：<span>${e.inventory}</span>
+                                    </div>
+                                </div>
+                            </div>`
+                    })
+                }
+                $("#orders").append(str)
+            }
+        })
+    }
+
+    function getCompany() {
+        $.ajax({
+            url: `${ip}/api/customer/findCompanyInfo?companyId=${id}`,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (data) {
+                console.log(data);
+                $("#companyName").html(data.companyName);
+                $("#addr").html(data.provinceName + data.cityName);
+                $("#companyCreatedAt").html(data.companyCreatedAt);
+                $("#companyOrderNum").html(data.companyOrderNum);
+                if (saleChannel == '1') {
+                    $("#vehicleSourceNum").html(data.vehicleSourceNum);
+                }
+                if (saleChannel == '2') {
+                    $("#vehicleSourceNum").html(data.vehicleVipSourceNum);
+                }
+            }
+        })
+    }
+
+    function getSales() {
+        $.ajax({
+            url: `${ip}/api/customer/findCompanyVehicleSource?companyId=${id}&saleChannel=${saleChannel}`,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (data) {
+                console.log(data);
+                let str = '';
+                if (data.brandLogoImgUrlList.length != 0) {
+                    data.brandLogoImgUrlList.map(e => {
+                        str += `<img src="${ip+e}" alt="">`
+                    })
+                }
+                $("#imgs").html(str);
+            }
+        })
+    }
+
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+        }
+    }
+</script>
+
+</html>
