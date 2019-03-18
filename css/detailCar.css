@@ -1,0 +1,252 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: PingFangSC-Regular, sans-serif;
+    background-color: #fff;
+}
+
+header {
+    width: 100%;
+    height: 1.173333rem
+        /* 88/75 */
+    ;
+    background-color: #fff;
+    font-size: .48rem;
+    /* 36/75 */
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.173333rem
+        /* 88/75 */
+    ;
+    border-bottom: solid 1px #e1e1e1;
+
+}
+
+.icon_back {
+    width: .2rem
+        /* 15/75 */
+    ;
+    height: .373333rem
+        /* 28/75 */
+    ;
+    position: absolute;
+    left: .4rem;
+    top: .373333rem
+        /* 28/75 */
+}
+
+.banner {
+    border-bottom: solid 1px #e1e1e1;
+
+}
+
+.title {
+    margin: .4rem .4rem 0;
+    /* 30/75 */
+    ;
+    border-left: .053333rem
+        /* 4/75 */
+        solid rgb(237, 65, 74);
+    font-size: .4rem
+        /* 30/75 */
+    ;
+    color: #333;
+    font-weight: bold;
+    padding-left: .2rem;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 4.8rem
+        /* 360/75 */
+    ;
+    margin: .4rem
+        /* 30/75 */
+        auto !important;
+}
+
+.swiper-slide {
+    /*  text-align: center;
+    font-size: .293333rem /* 22/75 ; */
+    background: #fff;
+    /* Center slide text vertically */
+    /*     display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center; */
+}
+
+.swiper-pagination {
+    width: 1.1rem !important;
+    height: .506667rem
+        /* 38/75 */
+    ;
+    background-color: #7f7f7f;
+    border-radius: .266667rem
+        /* 20/75 */
+    ;
+    font-size: .293333rem
+        /* 22/75 */
+    ;
+    color: #fff;
+
+    right: .4rem
+        /* 30/75 */
+    ;
+    left: auto !important;
+    line-height: .506667rem
+        /* 38/75 */
+    ;
+}
+
+.car {
+    padding: .4rem
+        /* 30/75 */
+    ;
+    border-bottom: solid 1px #e1e1e1;
+}
+
+.car>.name {
+    font-size: .373333rem
+        /* 28/75 */
+    ;
+    font-weight: bold;
+}
+
+.car>.price {
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    margin-top: .266667rem
+        /* 20/75 */
+    ;
+    color: #666;
+}
+
+.payRule {
+    width: 8.666667rem
+        /* 650/75 */
+    ;
+    height: 2.4rem
+        /* 180/75 */
+    ;
+    background-color: #f3f3f3;
+    margin: .266667rem
+        /* 20/75 */
+        .666667rem
+        /* 50/75 */
+    ;
+    border-radius: .133333rem
+        /* 10/75 */
+    ;
+}
+
+.payRule>.c2 {
+    color: #fb3e34;
+    font-weight: bold;
+    border-bottom: solid 1px #e1e1e1;
+}
+
+article {
+    border-bottom: solid 1px #e1e1e1;
+}
+
+.payRule>div {
+    display: flex;
+    padding: .213333rem
+        /* 16/75 */
+    ;
+    justify-content: space-around;
+}
+
+.payRule>.c3 {
+    font-size: .32rem
+        /* 24/75 */
+    ;
+    font-weight: bold;
+}
+
+.counts {
+    padding: .266667rem
+        /* 20/75 */
+    ;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.counts>.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: .586667rem
+        /* 44/75 */
+    ;
+    margin: .133333rem
+        /* 10/75 */
+        .266667rem
+        /* 20/75 */
+    ;
+    padding: .066667rem
+        /* 5/75 */
+    ;
+    background-color: #f7f7f7;
+    border-radius: .053333rem
+        /* 4/75 */
+    ;
+    font-size: .346667rem
+        /* 26/75 */
+    ;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    font-size: .4rem
+        /* 30/75 */
+    ;
+    background-color: #f03932;
+    display: flex;
+    align-items: center;
+    height: 1.173333rem
+        /* 88/75 */
+    ;
+    z-index: 99;
+}
+
+.block {
+    width: 100%;
+    height: 1.2rem
+        /* 88/75 */
+    ;
+    visibility: hidden;
+}
+
+footer>.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+footer .separator {
+    height: 1.173333rem
+        /* 88/75 */
+    ;
+    width: .026667rem
+        /* 2/75 */
+    ;
+    background-color: #fff;
+}

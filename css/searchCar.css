@@ -23,9 +23,6 @@ header {
 }
 
 .container {
-    margin: .266667rem 0 1.44rem /* 108/75 */
-        /* 20/75 */
-    ;
     background-color: #fff;
 }
 

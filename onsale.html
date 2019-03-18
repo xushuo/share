@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>产品报价</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/onsale.css">
+</head>
+
+<body>
+    <header id="title">
+        产品报价
+        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+    </header>
+
+    <article>
+        <div class="head">
+            <div class="title">主推车型</div>
+            <div class="more">更多</div>
+        </div>
+        <div class="list">
+            <div class="item">
+                <img src="" alt="">
+                <div class="name">大众朗逸</div>
+                <div class="desc ellipsis">2018kasudnnasdassa</div>
+            </div>
+            <div class="item">
+                <img src="" alt="">
+                <div class="name">大众朗逸</div>
+                <div class="desc ellipsis">2018kasudnnasdassa</div>
+            </div>
+            <div class="item">
+                <img src="" alt="">
+                <div class="name">大众朗逸</div>
+                <div class="desc ellipsis">2018kasudnnasdassa</div>
+            </div>
+            <div class="item">
+                <img src="" alt="">
+                <div class="name">大众朗逸</div>
+                <div class="desc ellipsis">2018kasudnnasdassa</div>
+            </div>
+            <div class="item">
+                <img src="" alt="">
+                <div class="name">大众朗逸</div>
+                <div class="desc ellipsis">2018kasudnnasdassa</div>
+            </div>
+            <div class="item">
+                <img src="" alt="">
+                <div class="name">大众朗逸</div>
+                <div class="desc ellipsis">2018kasudnnasdassa</div>
+            </div>
+        </div>
+
+        <div class="head">
+            <div class="title">在售车型</div>
+        </div>
+        <div class="search">
+            <div class="input">输入指导价快速选择车型</div>
+            <div class="text">搜索</div>
+        </div>
+        <!--城市索引查询-->
+        <div class="letter">
+            <ul>
+                <li><a href="javascript:;">A</a></li>
+                <li><a href="javascript:;">B</a></li>
+                <li><a href="javascript:;">C</a></li>
+                <li><a href="javascript:;">D</a></li>
+                <li><a href="javascript:;">E</a></li>
+                <li><a href="javascript:;">F</a></li>
+                <li><a href="javascript:;">G</a></li>
+                <li><a href="javascript:;">H</a></li>
+                <li><a href="javascript:;">J</a></li>
+                <li><a href="javascript:;">K</a></li>
+                <li><a href="javascript:;">L</a></li>
+                <li><a href="javascript:;">M</a></li>
+                <li><a href="javascript:;">N</a></li>
+                <li><a href="javascript:;">O</a></li>
+                <li><a href="javascript:;">P</a></li>
+                <li><a href="javascript:;">Q</a></li>
+                <li><a href="javascript:;">R</a></li>
+                <li><a href="javascript:;">S</a></li>
+                <li><a href="javascript:;">T</a></li>
+                <li><a href="javascript:;">W</a></li>
+                <li><a href="javascript:;">X</a></li>
+                <li><a href="javascript:;">Y</a></li>
+                <li><a href="javascript:;">Z</a></li>
+            </ul>
+        </div>
+        <!--城市列表-->
+        <div class="container">
+            <div class="city">
+
+            </div>
+        </div>
+
+
+    </article>
+
+
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/onsale.js"></script>
+
+
+<script>
+    let ip = 'http://114.115.166.79:8030';
+
+    window.addEventListener('scroll',function(ev){
+        console.log(window.scrollY)
+        if(window.scrollY>340){
+            $(".letter").css('position','fixed')
+            $(".letter").css('top','1.4rem')
+        }else{
+            $(".letter").css('position','absolute')
+            $(".letter").css('top','auto')
+        }
+    })
+
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+        }
+    }
+</script>
+
+</html>

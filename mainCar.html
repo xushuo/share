@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>产品报价</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/mainCar.css">
+</head>
+
+<body>
+    <header id="title">
+        产品报价
+        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+    </header>
+    <article>
+        <div class="title">车源详情</div>
+        <div class="list">
+            <div class="item">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="content">
+                    <div class="p1">奔腾X80</div>
+                    <div class="p2">1232018kuan宽自动</div>
+                    <div class="p3">指导价：12.21万元</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="content">
+                    <div class="p1">奔腾X80</div>
+                    <div class="p2">1232018kuan宽自动</div>
+                    <div class="p3">指导价：12.21万元</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="content">
+                    <div class="p1">奔腾X80</div>
+                    <div class="p2">1232018kuan宽自动</div>
+                    <div class="p3">指导价：12.21万元</div>
+                </div>
+            </div>
+        </div>
+    </article>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script>
+     
+    let ip = 'http://114.115.166.79:8030';
+   
+ 
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>车辆详情</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/detailCar.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+
+<body>
+    <header id="title">
+        车辆详情
+        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+    </header>
+    <div class="banner">
+        <div class="swiper-container" id="investproSwiper">
+            <div class="swiper-wrapper" id="imgs">
+                <div class="swiper-slide">Slide 1</div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide">Slide 4</div>
+                <div class="swiper-slide">Slide 5</div>
+                <div class="swiper-slide">Slide 6</div>
+                <div class="swiper-slide">Slide 7</div>
+                <div class="swiper-slide">Slide 8</div>
+                <div class="swiper-slide">Slide 9</div>
+                <div class="swiper-slide">Slide 10</div>
+            </div>
+
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+
+        </div>
+    </div>
+    <section class="car">
+        <div class="name">大众蓝衣</div>
+        <div class="price">厂商指导价：<span>12.12</span>万</div>
+    </section>
+    <article>
+        <div class="title">金融方案</div>
+        <section class="payRule">
+            <div class="c1">
+                <div class="r1">首付</div>
+                <div class="r2">月供</div>
+                <div class="r3">期数</div>
+            </div>
+            <div class="c2">
+                <div class="r1">12200元</div>
+                <div class="r2">1200元</div>
+                <div class="r3">36期</div>
+            </div>
+            <div class="c3">
+                <div class="r1">免购置税</div>
+                <div class="r2">送一年保险</div>
+                <div class="r3">0服务费</div>
+            </div>
+        </section>
+    </article>
+    <article>
+        <div class="title">可售库存</div>
+        <section class="counts">
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+            <div class="item">白色 <span>12</span></div>
+        </section>
+    </article>
+    <div class="block"></div>
+    <footer>
+        <div class="btn">更多方案</div>
+        <div class="separator"></div>
+        <div class="btn">创建订单</div>
+    </footer>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+    let ip = 'http://114.115.166.79:8030';
+
+    var swiper = new Swiper("#investproSwiper", {
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        },
+    });
+
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+        }
+    }
+</script>
+
+</html>
