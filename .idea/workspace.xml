@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a894515e-78ad-49e4-8148-cbd149164cdd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/searchCar.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/searchCar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sale.html" beforeDir="false" afterPath="$PROJECT_DIR$/sale.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchCar.html" beforeDir="false" afterPath="$PROJECT_DIR$/searchCar.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,7 +41,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="365" />
-    <option name="y" value="126" />
+    <option name="y" value="125" />
     <option name="width" value="1400" />
     <option name="height" value="785" />
   </component>
@@ -113,17 +110,17 @@
       <workItem from="1548238307128" duration="538000" />
       <workItem from="1548384115135" duration="189000" />
       <workItem from="1552877957309" duration="215000" />
+      <workItem from="1552878969180" duration="787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1040000" />
+    <option name="totallyTimeSpent" value="1827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26541555" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26876676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -151,12 +148,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sale.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/searchCar.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/carDetailVIP.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
@@ -167,6 +158,12 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sale.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchCar.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/onsale.html">
       <provider selected="true" editor-type-id="text-editor">

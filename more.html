@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>车源详情</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/more.css">
+</head>
+
+<body>
+    <header id="title">
+        车源详情
+        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+    </header>
+    <article>
+        <div class="info">
+            <div class="item">增加首付比例</div>
+            <div class="number" id="kinerPicker">
+                <span>15%</span>
+                <img src="imges/icon_right.png" class="icon_right" alt="">
+            </div>
+        </div>
+        <div class="info">
+            <div class="item">选择期数</div>
+            <div class="number" onclick="showCount()">
+                <span>36期</span>
+                <img src="imges/icon_right.png" class="icon_right" alt="">
+            </div>
+        </div>
+    </article>
+    <footer>提交</footer>
+    <div class="modal modalCount">
+        <section>
+            <div class="counts">
+                <div class="count">36期</div>
+                <div class="count">48期</div>
+            </div>
+            <div class="cancel" onclick="closeCount()">取消</div>
+        </section>
+    </div>
+    <!-- <div class="modal modalComputed">
+        <section>
+            <div class="btns">
+                <div class="cancel">取消</div>
+                <div class="confirm">确定</div>
+            </div>
+            <div class="counts">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">20%</div>
+                        <div class="swiper-slide">30%</div>
+                        <div class="swiper-slide">40%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> -->
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/flexible.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/kinerDatePicker.js"></script>
+<script>
+    let ip = 'http://114.115.166.79:8030';
+
+    $('#kinerPicker').kinerDatePicker({
+        clickMaskHide: true,
+        showHandler: function (ctx) {
+            console.log("显示时间选择器:", ctx);
+        },
+        hideHandler: function (ctx) {
+            console.log("隐藏时间选择器:", ctx);
+        },
+        changeHandler: function (vals, ctx) {
+            console.log("时间改变:", vals, ctx);
+        },
+        okHandler: function (vals, ctx) {
+            console.log("确定选择:", vals, ctx);
+        },
+        cancelHandler: function (ctx) {
+            console.log("取消选择:", ctx);
+        }
+    });
+
+
+
+    function showCount() {
+        $('.modalCount').css('display', 'block')
+    }
+
+    function showPercent() {
+        $('.modalComputed').css('display', 'block')
+    }
+
+    function closeCount() {
+        $('.modalCount').css('display', 'none')
+    }
+
+    function jump() {
+        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+
+        } else if (navigator.userAgent.match(/android/i)) {
+            let loadDateTime = new Date();
+            window.setTimeout(function () {
+                    let timeOutDateTime = new Date();
+                    if (timeOutDateTime - loadDateTime < 1100) {
+                        window.location = "http://47.105.75.125:8020/reg";
+                    } else {
+                        window.close();
+                    }
+                },
+                1000);
+
+            if (saleChannel == '1') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
+            }
+            if (saleChannel == '2') {
+                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
+            }
+        }
+    }
+</script>
+
+</html>
