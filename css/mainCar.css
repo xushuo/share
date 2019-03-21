@@ -25,20 +25,28 @@ header {
 }
 
 .icon_back {
-    width: .2rem /* 15/75 */;
-    height: .373333rem /* 28/75 */;
+    width: .2rem
+        /* 15/75 */
+    ;
+    height: .373333rem
+        /* 28/75 */
+    ;
     position: absolute;
     left: .4rem;
-    top: .373333rem /* 28/75 */
+    top: .373333rem
+        /* 28/75 */
 }
 
 article>.title {
     margin: .4rem .4rem 0;
     /* 30/75 */
     ;
-    border-left: .053333rem /* 4/75 */ 
+    border-left: .053333rem
+        /* 4/75 */
         solid rgb(237, 65, 74);
-    font-size: .4rem /* 30/75 */;
+    font-size: .4rem
+        /* 30/75 */
+    ;
     color: #333;
     font-weight: bold;
     padding-left: .2rem;
@@ -60,6 +68,13 @@ article>.title {
 
 }
 
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .list>.item>.image {
     background-image: url('../imges/backg.png');
     width: 2.933333rem
@@ -69,6 +84,15 @@ article>.title {
         /* 140/75 */
     ;
 
+}
+
+.list>.item>.image>img {
+    width: 2.933333rem
+        /* 220/75 */
+    ;
+    height: 1.866667rem
+        /* 140/75 */
+    ;
 }
 
 .list>.item>.content {
@@ -83,6 +107,7 @@ article>.title {
     padding: .133333rem
         /* 10/75 */
         0;
+        width: 5.866667rem /* 440/75 */;
 }
 
 .list>.item>.content>div {

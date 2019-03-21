@@ -16,9 +16,9 @@
         <img src="imges/icon_back_black.png" class="icon_back" alt="">
     </header>
     <article>
-        <div class="title">车源详情</div>
+        <div class="title">主推车型</div>
         <div class="list">
-            <div class="item">
+            <!-- <div class="item">
                 <div class="image">
                     <img src="" alt="">
                 </div>
@@ -27,37 +27,48 @@
                     <div class="p2">1232018kuan宽自动</div>
                     <div class="p3">指导价：12.21万元</div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="" alt="">
-                </div>
-                <div class="content">
-                    <div class="p1">奔腾X80</div>
-                    <div class="p2">1232018kuan宽自动</div>
-                    <div class="p3">指导价：12.21万元</div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <img src="" alt="">
-                </div>
-                <div class="content">
-                    <div class="p1">奔腾X80</div>
-                    <div class="p2">1232018kuan宽自动</div>
-                    <div class="p3">指导价：12.21万元</div>
-                </div>
-            </div>
+            </div> -->
         </div>
     </article>
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/flexible.js"></script>
 <script>
-     
-    let ip = 'http://114.115.166.79:8030';
-   
- 
+    // let ip = 'http://114.115.166.79:8030';
+    let ip = 'http://10.4.128.145:8010';
+
+    getData()
+
+    function getData() {
+        $.ajax({
+            url: `${ip}/api/join/clue/queryBaseCars`,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (res) {
+                console.log(res);
+                let strs = '';
+                res.mainPushCarsList.map(e => {
+                    strs +=
+                        ` <div class="item">
+                <div class="image">
+                    <img src="${e.modeImg}" alt="">
+                </div>
+                <div class="content">
+                    <div class="p1">${e.brandName} ${e.seriesName}</div>
+                    <div class="p2 ellipsis">${e.modeName}</div>
+                    <div class="p3">指导价：${e.guidePrice}元</div>
+                </div>
+            </div>`;
+                })
+                $(".list").html(strs)
+
+            }
+        })
+    }
+
     function jump() {
         if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
             let loadDateTime = new Date();

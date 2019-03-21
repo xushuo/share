@@ -17,19 +17,19 @@
     </header>
     <div class="result">
         <div class="item">
-            <div class="number">0</div>
+            <div class="number" id="downpayment">0</div>
             <div class="desc">首付 (元)</div>
         </div>
         <div class="item">
-            <div class="number">0</div>
+            <div class="number" id="monthlyPayment">0</div>
             <div class="desc">月供 (元)</div>
         </div>
         <div class="item">
-            <div class="number">0</div>
-            <div class="desc">还款期数 (元)</div>
+            <div class="number" id="lease">0</div>
+            <div class="desc">还款期数 (期)</div>
         </div>
         <div class="item">
-            <div class="number">0</div>
+            <div class="number" id="paymentMoney">0</div>
             <div class="desc">首次支付 (元)</div>
         </div>
     </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="item" onclick="showCount()">
             <div class="label">租期</div>
-            <div class="input" id="lease">48</div>
+            <div class="input" id="leaseCount">48</div>
             <div class="unit">期</div>
         </div>
         <div class="item">
@@ -124,7 +124,7 @@
             downPayment: $("#downPayment").val() || '', //首付
             downPaymentRatio: $("#downPaymentRatio").val() || '', //首付比例
             guidePrice: $("#guidePrice").val() || '', //指导价
-            lease: $("#lease").html() || '', //租期
+            lease: $("#leaseCount").html() || '', //租期
             purchasePrice: $("#purchasePrice").val() || '', //采购价
             purchaseTax: $("#purchaseTax").val() || '' //购置税
         }
@@ -134,12 +134,14 @@
             data: data,
             dataType: 'json',
             headers: {
-                "Access-Control-Allow-Origin":"*",
                 "Content-Type": "application/json"
             },
-            success: function (data) {
-                console.log(data);
-                $("#orders").append('')
+            success: function (res) {
+                console.log(res);
+                $("#downpayment").html(res.downpayment); //首付
+                $("#lease").html(res.lease); //期数
+                $("#monthlyPayment").html(res.monthlyPayment); //月供
+                $("#paymentMoney").html(res.paymentMoney); //首次支付
             }
         })
 

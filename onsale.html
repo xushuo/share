@@ -22,38 +22,12 @@
             <div class="more">更多</div>
         </div>
         <div class="list">
-            <div class="item">
+            <!--  <div class="item">
                 <img src="" alt="">
                 <div class="name">大众朗逸</div>
                 <div class="desc ellipsis">2018kasudnnasdassa</div>
-            </div>
-            <div class="item">
-                <img src="" alt="">
-                <div class="name">大众朗逸</div>
-                <div class="desc ellipsis">2018kasudnnasdassa</div>
-            </div>
-            <div class="item">
-                <img src="" alt="">
-                <div class="name">大众朗逸</div>
-                <div class="desc ellipsis">2018kasudnnasdassa</div>
-            </div>
-            <div class="item">
-                <img src="" alt="">
-                <div class="name">大众朗逸</div>
-                <div class="desc ellipsis">2018kasudnnasdassa</div>
-            </div>
-            <div class="item">
-                <img src="" alt="">
-                <div class="name">大众朗逸</div>
-                <div class="desc ellipsis">2018kasudnnasdassa</div>
-            </div>
-            <div class="item">
-                <img src="" alt="">
-                <div class="name">大众朗逸</div>
-                <div class="desc ellipsis">2018kasudnnasdassa</div>
-            </div>
+            </div> -->
         </div>
-
         <div class="head">
             <div class="title">在售车型</div>
         </div>
@@ -63,8 +37,8 @@
         </div>
         <!--城市索引查询-->
         <div class="letter">
-            <ul>
-                <li><a href="javascript:;">A</a></li>
+            <!--  <ul>
+                  <li><a href="javascript:;">A</a></li>
                 <li><a href="javascript:;">B</a></li>
                 <li><a href="javascript:;">C</a></li>
                 <li><a href="javascript:;">D</a></li>
@@ -87,7 +61,7 @@
                 <li><a href="javascript:;">X</a></li>
                 <li><a href="javascript:;">Y</a></li>
                 <li><a href="javascript:;">Z</a></li>
-            </ul>
+            </ul> -->
         </div>
         <!--城市列表-->
         <div class="container">
@@ -95,11 +69,7 @@
 
             </div>
         </div>
-
-
     </article>
-
-
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/flexible.js"></script>
@@ -108,18 +78,67 @@
 
 
 <script>
-    let ip = 'http://114.115.166.79:8030';
+    // let ip = 'http://114.115.166.79:8030';
+    let ip = 'http://10.4.128.145:8010';
 
-    window.addEventListener('scroll',function(ev){
+    window.addEventListener('scroll', function (ev) {
         console.log(window.scrollY)
-        if(window.scrollY>340){
-            $(".letter").css('position','fixed')
-            $(".letter").css('top','1.4rem')
-        }else{
-            $(".letter").css('position','absolute')
-            $(".letter").css('top','auto')
+        if (window.scrollY > 370) {
+            $(".letter").css('position', 'fixed')
+            $(".letter").css('top', '1.4rem')
+        } else {
+            $(".letter").css('position', 'absolute')
+            $(".letter").css('top', 'auto')
         }
     })
+    getData()
+    var onSaleModelList = [];
+
+    function getData() {
+        $.ajax({
+            url: `${ip}/api/join/clue/queryBaseCars`,
+            type: 'get',
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (res) {
+                console.log(res);
+                let strs = '';
+                res.mainPushCarsList.map((e, index) => {
+                    if (index < 6) {
+                        strs +=
+                            ` <div class="item">
+                            <img src="${e.modeImg}" alt="">
+                            <div class="name">${e.brandName} ${e.seriesName}</div>
+                            <div class="desc ellipsis">${e.modeName}</div>
+                        </div>`;
+                    }
+                })
+                $(".list").html(strs)
+                strs = '<ul>';
+                res.onSaleModelList.map(e => {
+                    strs += `<li><a href="javascript:;">${e.abbreviation}</a></li>`;
+                })
+                strs += '</ul>'
+                $(".letter").html(strs);
+                onSaleModelList = res.onSaleModelList;
+
+                $('.city').html('');
+
+                let html = '';
+                $.each(onSaleModelList, function (i, item) {
+                    html += '<div class="city-list"><span class="city-letter" id="' + item.abbreviation +
+                        '1">' + item.abbreviation + '</span>';
+                    $.each(item.brandVOList, function (j, data) {
+                        html += '<p>' + data.brandName + '</p>';
+                    })
+                    html += '</div>';
+                })
+                $('.city').append(html);
+            }
+        })
+    }
 
     function jump() {
         if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {

@@ -90,8 +90,7 @@
     <div class="content">
         <div class="item">
             <div class="label">奥迪（进口）</div>
-            <div class="line">A1</div>
-            <div class="line">阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达阿达</div>
+           <!--  <div class="line">A1</div> -->
         </div>
 
     </div>
@@ -100,8 +99,42 @@
 <script src="js/jquery.js"></script>
 <script src="js/flexible.js"></script>
 <script>
-    let ip = 'http://114.115.166.79:8030';
+   // let ip = 'http://114.115.166.79:8030';
+   let ip = 'http://10.4.128.145:8010';
+    let brandCode = GetQueryString('brandCode') || 'B121';
+    let brandName = GetQueryString('brandName') || '日产';
+    $('.label').html(brandName)
+    
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
 
+    doCompute();
+
+    function doCompute() {
+        let data = {
+            brandCode: brandCode,
+            brandName: brandName
+        }
+        $.ajax({
+            url: `${ip}/api/join/clue/getCarBrandInfo`,
+            type: 'get',
+            data: data,
+            dataType: 'json',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            success: function (res) {
+                console.log(res);
+
+            }
+        })
+
+    }
+    
     function jump() {
         if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
             let loadDateTime = new Date();
