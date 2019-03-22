@@ -99,13 +99,13 @@
             data: data,
             dataType: 'json',
             headers: {
-                "Authorization": "bearer 99c692a3-fc47-476f-b9ca-e8b722ee38f4",
+                "Authorization": token,
                 "Content-Type": "application/json"
             },
             success: function (res) {
                 console.log(res);
                 let html = ''
-                res.carDetailInfo.highlightImageList.map(e => {
+                res.carDetailInfo.imageList.map(e => {
                     html += `<div class="swiper-slide"><img src="${e}" alt=""></div>`
                 })
                 $("#imgs").html(html)
