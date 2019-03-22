@@ -120,7 +120,8 @@
             });
             this.container.find('.kdp-ok-btn').click(function () {
                 var month = self.selectedMonth || 0;
-                $(self).html(defaultMonth[month] + "%").addClass('hasValue');
+                $(self).html(` <span>${defaultMonth[month]}%</span>
+                <img src="imges/icon_right.png" class="icon_right" alt="">`).addClass('hasValue');
                 $(self).attr({
                     "month-val": month || ""
                 });

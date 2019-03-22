@@ -19,16 +19,9 @@
     <div class="banner">
         <div class="swiper-container" id="investproSwiper">
             <div class="swiper-wrapper" id="imgs">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
-                <div class="swiper-slide">Slide 5</div>
-                <div class="swiper-slide">Slide 6</div>
-                <div class="swiper-slide">Slide 7</div>
-                <div class="swiper-slide">Slide 8</div>
-                <div class="swiper-slide">Slide 9</div>
-                <div class="swiper-slide">Slide 10</div>
+                <!--  <div class="swiper-slide">
+                      <img src="" alt="">
+                </div> -->
             </div>
 
             <!-- Add Pagination -->
@@ -37,8 +30,8 @@
         </div>
     </div>
     <section class="car">
-        <div class="name">大众蓝衣</div>
-        <div class="price">厂商指导价：<span>12.12</span>万</div>
+        <div class="name"></div>
+        <div class="price">厂商指导价：<span class="count">0</span>元</div>
     </section>
     <article>
         <div class="title">金融方案</div>
@@ -49,9 +42,9 @@
                 <div class="r3">期数</div>
             </div>
             <div class="c2">
-                <div class="r1">12200元</div>
-                <div class="r2">1200元</div>
-                <div class="r3">36期</div>
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
             </div>
             <div class="c3">
                 <div class="r1">免购置税</div>
@@ -63,27 +56,12 @@
     <article>
         <div class="title">可售库存</div>
         <section class="counts">
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
-            <div class="item">白色 <span>12</span></div>
+            <!-- <div class="item">白色</div> -->
         </section>
     </article>
     <div class="block"></div>
     <footer>
-        <div class="btn">更多方案</div>
+        <div class="btn" onclick="jump()">更多方案</div>
         <div class="separator"></div>
         <div class="btn">创建订单</div>
     </footer>
@@ -91,10 +69,13 @@
 <script src="js/jquery.js"></script>
 <script src="js/flexible.js"></script>
 <script src="js/swiper.min.js"></script>
+<script src="js/config.js"></script>
 <script>
-    // let ip = 'http://114.115.166.79:8030';
-    let ip = 'http://10.4.128.145:8010';
-    let carCode = GetQueryString('carCode') || 'b000004';
+    let modeCode = GetQueryString('modeCode') || 'MM2029';
+    let carId = GetQueryString('carId') || '192';
+    let startPercent = GetQueryString('startPercent') || '';
+    let leaseTerm = GetQueryString('leaseTerm') || '';
+
 
     function GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -103,73 +84,70 @@
         return null;
     }
 
-    var swiper = new Swiper("#investproSwiper", {
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'fraction',
-        },
-    });
-    
     doCompute();
+
     function doCompute() {
         let data = {
-            carCode: carCode
+            carCode: modeCode,
+            carId: carId,
+            startPercent: startPercent,
+            leaseTerm: leaseTerm
         }
         $.ajax({
-            url: `${ip}/api/join/clue/getRentalCalculator`,
+            url: `${ip}/api/join/clue/getCarDetailInfo`,
             type: 'get',
             data: data,
             dataType: 'json',
             headers: {
+                "Authorization": "bearer 99c692a3-fc47-476f-b9ca-e8b722ee38f4",
                 "Content-Type": "application/json"
             },
             success: function (res) {
                 console.log(res);
+                let html = ''
+                res.carDetailInfo.highlightImageList.map(e => {
+                    html += `<div class="swiper-slide"><img src="${e}" alt=""></div>`
+                })
+                $("#imgs").html(html)
 
+                var swiper = new Swiper("#investproSwiper", {
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'fraction',
+                    },
+                });
+
+                $('.car .name').html(res.carDetailInfo.fullName)
+                $('.car .price .count').html(res.carDetailInfo.price)
+                $('.payRule .c2 .r1').html(res.financialScheme[0].firstMoney + '元')
+                $('.payRule .c2 .r2').html(res.financialScheme[0].monthRent + '元')
+                $('.payRule .c2 .r3').html(res.financialScheme[0].leaseTerm + '期')
+
+                html = '';
+                res.whListList.map(e => {
+                    if (e.isAdequate == 'true') {
+                        html += `<div class="item">${e.carColor}</div>`;
+                    }
+                })
+                $('.counts').html(html)
+            },
+            error: function (error) {
+                console.log(error)
+                if(error.status==400){
+                    alert(error.responseJSON.message)
+                }
             }
         })
 
     }
 
     function jump() {
-        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-
-        } else if (navigator.userAgent.match(/android/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "http://47.105.75.125:8020/reg";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-        }
+        window.location.href = `./more.html?modeCode=${modeCode}&carId=${carId}`
     }
+
+    $('.icon_back').click(function () {
+        window.history.back(-1);
+    })
 </script>
 
 </html>

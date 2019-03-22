@@ -27,17 +27,17 @@
         <div class="info">
             <div class="item">选择期数</div>
             <div class="number" onclick="showCount()">
-                <span>36期</span>
+                <span id="lease">36期</span>
                 <img src="imges/icon_right.png" class="icon_right" alt="">
             </div>
         </div>
     </article>
-    <footer>提交</footer>
+    <footer onclick="jump()">提交</footer>
     <div class="modal modalCount">
         <section>
             <div class="counts">
-                <div class="count">36期</div>
-                <div class="count">48期</div>
+                <div class="count" onclick="choseLease(36)">36期</div>
+                <div class="count" onclick="choseLease(48)">48期</div>
             </div>
             <div class="cancel" onclick="closeCount()">取消</div>
         </section>
@@ -65,7 +65,18 @@
 <script src="js/swiper.min.js"></script>
 <script src="js/kinerDatePicker.js"></script>
 <script>
-    let ip = 'http://114.115.166.79:8030';
+    let modeCode = GetQueryString('modeCode') || '';
+    let carId = GetQueryString('carId') || '';
+    let startPercent = '';
+    let leaseTerm = '';
+
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
 
     $('#kinerPicker').kinerDatePicker({
         clickMaskHide: true,
@@ -79,6 +90,7 @@
             console.log("时间改变:", vals, ctx);
         },
         okHandler: function (vals, ctx) {
+            startPercent = vals;
             console.log("确定选择:", vals, ctx);
         },
         cancelHandler: function (ctx) {
@@ -86,7 +98,11 @@
         }
     });
 
-
+    function choseLease(num) {
+        $("#lease").html(num + '期')
+        leaseTerm = num;
+        closeCount()
+    }
 
     function showCount() {
         $('.modalCount').css('display', 'block')
@@ -101,44 +117,13 @@
     }
 
     function jump() {
-        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-
-        } else if (navigator.userAgent.match(/android/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "http://47.105.75.125:8020/reg";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-        }
+        window.location.href =
+            `./detailCar.html?modeCode=${modeCode}&carId=${carId}&startPercent=${startPercent}&leaseTerm=${leaseTerm}`
     }
+
+    $('.icon_back').click(function () {
+        window.history.back(-1);
+    })
 </script>
 
 </html>

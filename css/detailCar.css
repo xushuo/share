@@ -198,6 +198,8 @@ article {
     ;
     padding: .066667rem
         /* 5/75 */
+        .133333rem
+        /* 10/75 */
     ;
     background-color: #f7f7f7;
     border-radius: .053333rem
@@ -206,6 +208,11 @@ article {
     font-size: .346667rem
         /* 26/75 */
     ;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
 }
 
 footer {

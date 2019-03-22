@@ -101,9 +101,9 @@
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/flexible.js"></script>
+<script src="js/config.js"></script>
 <script>
-    // let ip = 'http://114.115.166.79:8030';
-    let ip = 'http://10.4.128.145:8010';
+  
 
     function choseLease(num) {
         $("#lease").html(num)
@@ -134,6 +134,7 @@
             data: data,
             dataType: 'json',
             headers: {
+                "Authorization": "bearer 99c692a3-fc47-476f-b9ca-e8b722ee38f4",
                 "Content-Type": "application/json"
             },
             success: function (res) {
@@ -142,6 +143,12 @@
                 $("#lease").html(res.lease); //期数
                 $("#monthlyPayment").html(res.monthlyPayment); //月供
                 $("#paymentMoney").html(res.paymentMoney); //首次支付
+            },
+            error: function (error) {
+                console.log(error)
+                if(error.status==400){
+                    alert(error.responseJSON.message)
+                }
             }
         })
 

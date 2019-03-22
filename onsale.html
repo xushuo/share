@@ -19,7 +19,7 @@
     <article>
         <div class="head">
             <div class="title">主推车型</div>
-            <div class="more">更多</div>
+            <div class="more" onclick="jumpMore()">更多</div>
         </div>
         <div class="list">
             <!--  <div class="item">
@@ -31,10 +31,10 @@
         <div class="head">
             <div class="title">在售车型</div>
         </div>
-        <div class="search">
+       <!--  <div class="search">
             <div class="input">输入指导价快速选择车型</div>
             <div class="text">搜索</div>
-        </div>
+        </div> -->
         <!--城市索引查询-->
         <div class="letter">
             <!--  <ul>
@@ -100,6 +100,7 @@
             type: 'get',
             dataType: 'json',
             headers: {
+                "Authorization": "bearer 99c692a3-fc47-476f-b9ca-e8b722ee38f4",
                 "Content-Type": "application/json"
             },
             success: function (res) {
@@ -108,7 +109,7 @@
                 res.mainPushCarsList.map((e, index) => {
                     if (index < 6) {
                         strs +=
-                            ` <div class="item">
+                            ` <div class="item" onclick="jumpDetail('${e.modeCode}','${e.id}')">
                             <img src="${e.modeImg}" alt="">
                             <div class="name">${e.brandName} ${e.seriesName}</div>
                             <div class="desc ellipsis">${e.modeName}</div>
@@ -128,56 +129,38 @@
 
                 let html = '';
                 $.each(onSaleModelList, function (i, item) {
-                    html += '<div class="city-list"><span class="city-letter" id="' + item.abbreviation +
+                    html += '<div class="city-list"><span class="city-letter" id="' + item
+                        .abbreviation +
                         '1">' + item.abbreviation + '</span>';
                     $.each(item.brandVOList, function (j, data) {
-                        html += '<p>' + data.brandName + '</p>';
+                        html += '<p onclick="jumpType(\'' + data.brandName + '\',\'' + data
+                            .brandCode + '\')">' + data.brandName + '</p>';
                     })
                     html += '</div>';
                 })
                 $('.city').append(html);
+            },
+            error: function (error) {
+                console.log(error)
+                if(error.status==400){
+                    alert(error.responseJSON.message)
+                }
             }
         })
     }
 
-    function jump() {
-        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
+    function jumpDetail(modeCode, carId) {
+        //encodeURI(encodeURI(brandName))
+        window.location.href = `./detailCar.html?modeCode=${modeCode}&carId=${carId}`
+    }
 
-        } else if (navigator.userAgent.match(/android/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "http://47.105.75.125:8020/reg";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
+    function jumpType(brandName, brandCode) {
+        //encodeURI(encodeURI(brandName))
+        window.location.href = `./carType.html?brandName=${encodeURI(encodeURI(brandName))}&brandCode=${brandCode}`
+    }
 
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-        }
+    function jumpMore() {
+        window.location.href = './mainCar.html'
     }
 </script>
 

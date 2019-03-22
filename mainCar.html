@@ -33,9 +33,8 @@
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/flexible.js"></script>
+<script src="js/config.js"></script>
 <script>
-    // let ip = 'http://114.115.166.79:8030';
-    let ip = 'http://10.4.128.145:8010';
 
     getData()
 
@@ -45,6 +44,7 @@
             type: 'get',
             dataType: 'json',
             headers: {
+                "Authorization": "bearer 99c692a3-fc47-476f-b9ca-e8b722ee38f4",
                 "Content-Type": "application/json"
             },
             success: function (res) {
@@ -52,7 +52,7 @@
                 let strs = '';
                 res.mainPushCarsList.map(e => {
                     strs +=
-                        ` <div class="item">
+                        ` <div class="item" onclick="jump('${e.modeCode}','${e.id}')">
                 <div class="image">
                     <img src="${e.modeImg}" alt="">
                 </div>
@@ -65,49 +65,23 @@
                 })
                 $(".list").html(strs)
 
+            },
+            error: function (error) {
+                console.log(error)
+                if(error.status==400){
+                    alert(error.responseJSON.message)
+                }
             }
         })
     }
 
-    function jump() {
-        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-
-        } else if (navigator.userAgent.match(/android/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "http://47.105.75.125:8020/reg";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-        }
+    function jump(modeCode,carId) {
+        window.location.href = `./detailCar.html?modeCode=${modeCode}&carId=${carId}`
     }
+
+    $('.icon_back').click(function () {
+        window.history.back(-1);
+    })
 </script>
 
 </html>
