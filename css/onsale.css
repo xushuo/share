@@ -24,6 +24,19 @@ header {
 
 }
 
+.back {
+    width: 1.173333rem
+        /* 88/75 */
+    ;
+    height: 1.173333rem
+        /* 88/75 */
+    ;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* 28/75 */
+}
+
 .icon_back {
     width: .2rem
         /* 15/75 */
@@ -31,10 +44,6 @@ header {
     height: .373333rem
         /* 28/75 */
     ;
-    position: absolute;
-    left: .4rem;
-    top: .373333rem
-        /* 28/75 */
 }
 
 article>.head {

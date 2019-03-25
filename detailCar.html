@@ -14,7 +14,9 @@
 <body>
     <header id="title">
         车辆详情
-        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+        <div class="back">
+            <img src="imges/icon_back_black.png" class="icon_back" alt="">
+        </div>
     </header>
     <div class="banner">
         <div class="swiper-container" id="investproSwiper">
@@ -144,12 +146,12 @@
     function jump() {
         window.location.href = `./more.html?modeCode=${modeCode}&carId=${carId}`
     }
-    
+
     function create(){
         appCode.createOrder()
     }
 
-    $('.icon_back').click(function () {
+    $('.back').click(function () {
         window.location.href = `./onsale.html`
     })
 </script>

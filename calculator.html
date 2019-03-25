@@ -13,7 +13,9 @@
 <body>
     <header id="title">
         租赁计算器
-        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+        <div class="back">
+            <img src="imges/icon_back_black.png" class="icon_back" alt="">
+        </div>
     </header>
     <div class="result">
         <div class="item">
@@ -74,13 +76,13 @@
             </div>
             <div class="unit">%</div>
         </div>
-        <div class="item">
+        <!--     <div class="item">
             <div class="label">首付</div>
             <div class="input">
                 <input type="number" id="downPayment">
             </div>
             <div class="unit">元</div>
-        </div>
+        </div> -->
         <div class="alert">*此结果仅供参考，实际费用以当地缴纳为准</div>
     </div>
     <div class="modal modalCount">
@@ -103,10 +105,8 @@
 <script src="js/flexible.js"></script>
 <script src="js/config.js"></script>
 <script>
-  
-
     function choseLease(num) {
-        $("#lease").html(num)
+        $("#leaseCount").html(num)
         closeCount()
     }
 
@@ -119,49 +119,62 @@
     }
 
     function doCompute() {
-        let data = {
-            businessInsurance: $("#businessInsurance").val() || '', //商业险
-            downPayment: $("#downPayment").val() || '', //首付
-            downPaymentRatio: $("#downPaymentRatio").val() || '', //首付比例
-            guidePrice: $("#guidePrice").val() || '', //指导价
-            lease: $("#leaseCount").html() || '', //租期
-            purchasePrice: $("#purchasePrice").val() || '', //采购价
-            purchaseTax: $("#purchaseTax").val() || '' //购置税
-        }
-        $.ajax({
-            url: `${ip}/api/join/clue/getRentalCalculator`,
-            type: 'get',
-            data: data,
-            dataType: 'json',
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            },
-            success: function (res) {
-                console.log(res);
-                $("#downpayment").html(res.downpayment); //首付
-                $("#lease").html(res.lease); //期数
-                $("#monthlyPayment").html(res.monthlyPayment); //月供
-                $("#paymentMoney").html(res.paymentMoney); //首次支付
-            },
-            error: function (error) {
-                console.log(error)
-                if(error.status==400){
-                    alert(error.responseJSON.message)
-                }
+        let downPayment = $("#purchasePrice").val() * $("#downPaymentRatio").val() / 100;
+        if ($("#guidePrice").val() == '') {
+            alert('指导价不能为空')
+        } else if ($("#purchasePrice").val() == '') {
+            alert('采购价不能为空')
+        } else if ($("#businessInsurance").val() == '') {
+            alert('商业险不能为空')
+        } else if ($("#purchaseTax").val() == '') {
+            alert('购置税不能为空')
+        } else if ($("#downPaymentRatio").val() == '') {
+            alert('首付比例不能为空')
+        } else if (downPayment == '') {
+            alert('首付不能为空')
+        } else {
+            let data = {
+                businessInsurance: $("#businessInsurance").val() || '', //商业险
+                downPayment: downPayment || '', //首付
+                downPaymentRatio: $("#downPaymentRatio").val() || '', //首付比例
+                guidePrice: $("#guidePrice").val() || '', //指导价
+                lease: $("#leaseCount").html() || '', //租期
+                purchasePrice: $("#purchasePrice").val() || '', //采购价
+                purchaseTax: $("#purchaseTax").val() || '' //购置税
             }
-        })
-
+            $.ajax({
+                url: `${ip}/api/join/clue/getRentalCalculator`,
+                type: 'get',
+                data: data,
+                dataType: 'json',
+                headers: {
+                    "Authorization": token,
+                    "Content-Type": "application/json"
+                },
+                success: function (res) {
+                    console.log(res);
+                    $("#downpayment").html(res.downpayment); //首付
+                    $("#lease").html(res.lease); //期数
+                    $("#monthlyPayment").html(res.monthlyPayment); //月供
+                    $("#paymentMoney").html(res.paymentMoney); //首次支付
+                },
+                error: function (error) {
+                    console.log(error)
+                    if (error.status == 400) {
+                        alert(error.responseJSON.message)
+                    }
+                }
+            })
+        }
     }
 
-    function create(){
+    function create() {
         appCode.createOrder()
     }
 
-    $('.icon_back').click(function () {
-        window.location.href = `./onsale.html`
+    $('.back').click(function () {
+        appCode.callApp()
     })
-
 </script>
 
 </html>

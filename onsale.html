@@ -13,7 +13,9 @@
 <body>
     <header id="title">
         产品报价
-        <img src="imges/icon_back_black.png" class="icon_back" alt="">
+        <div class="back">
+            <img src="imges/icon_back_black.png" class="icon_back" alt="">
+        </div>
     </header>
 
     <article>
@@ -162,7 +164,7 @@
         window.location.href = './mainCar.html'
     }
 
-    $('.icon_back').click(function () {
+    $('.back').click(function () {
         appCode.callApp()
     })
 </script>
