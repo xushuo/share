@@ -166,7 +166,7 @@
                     e.vehicleList.map(e2 => {
                         html += `<div class="line2" onclick="jump('${e2.modelCode}','${e2.id}')">
                                 <div class="desc">${e2.modelName}</div>
-                                <div class="price">指导价：${e2.price}元</div>
+                                <div class="price">指导价：${(e2.price/10000).toFixed(2)}万</div>
                             </div>`;
                     })
                     html += `</div>`;

@@ -59,7 +59,7 @@
                 <div class="content">
                     <div class="p1">${e.brandName} ${e.seriesName}</div>
                     <div class="p2 ellipsis">${e.modeName}</div>
-                    <div class="p3">指导价：${e.guidePrice}元</div>
+                    <div class="p3">指导价：${(e.guidePrice/10000).toFixed(2)}万</div>
                 </div>
             </div>`;
                 })

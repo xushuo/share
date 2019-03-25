@@ -31,7 +31,7 @@
     </div>
     <section class="car">
         <div class="name"></div>
-        <div class="price">厂商指导价：<span class="count">0</span>元</div>
+        <div class="price">厂商指导价：<span class="count">0</span>万</div>
     </section>
     <article>
         <div class="title">金融方案</div>
@@ -63,7 +63,7 @@
     <footer>
         <div class="btn" onclick="jump()">更多方案</div>
         <div class="separator"></div>
-        <div class="btn">创建订单</div>
+        <div class="btn" onclick="create()">创建订单</div>
     </footer>
 </body>
 <script src="js/jquery.js"></script>
@@ -118,9 +118,9 @@
                 });
 
                 $('.car .name').html(res.carDetailInfo.fullName)
-                $('.car .price .count').html(res.carDetailInfo.price)
-                $('.payRule .c2 .r1').html(res.financialScheme[0].firstMoney + '元')
-                $('.payRule .c2 .r2').html(res.financialScheme[0].monthRent + '元')
+                $('.car .price .count').html((res.carDetailInfo.price/10000).toFixed(2))
+                $('.payRule .c2 .r1').html((res.financialScheme[0].firstMoney/10000).toFixed(2) + '万')
+                $('.payRule .c2 .r2').html((res.financialScheme[0].monthRent/10000).toFixed(2) + '万')
                 $('.payRule .c2 .r3').html(res.financialScheme[0].leaseTerm + '期')
 
                 html = '';
@@ -144,9 +144,13 @@
     function jump() {
         window.location.href = `./more.html?modeCode=${modeCode}&carId=${carId}`
     }
+    
+    function create(){
+        appCode.createOrder()
+    }
 
     $('.icon_back').click(function () {
-        window.history.back(-1);
+        window.location.href = `./onsale.html`
     })
 </script>
 

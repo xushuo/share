@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>车源详情</title>
+    <title>更多方案</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/more.css">
@@ -13,7 +13,7 @@
 
 <body>
     <header id="title">
-        车源详情
+        更多方案
         <img src="imges/icon_back_black.png" class="icon_back" alt="">
     </header>
     <article>
@@ -67,8 +67,8 @@
 <script>
     let modeCode = GetQueryString('modeCode') || '';
     let carId = GetQueryString('carId') || '';
-    let startPercent = '';
-    let leaseTerm = '';
+    let startPercent = '15';
+    let leaseTerm = '36';
 
 
     function GetQueryString(name) {
@@ -117,6 +117,7 @@
     }
 
     function jump() {
+        alert('配置成功')
         window.location.href =
             `./detailCar.html?modeCode=${modeCode}&carId=${carId}&startPercent=${startPercent}&leaseTerm=${leaseTerm}`
     }

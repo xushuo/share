@@ -2,6 +2,6 @@
     let ip = 'http://10.4.128.145:8010';
     let token = '';
 
-    function getCode(token) {
-        token = token
+    function getCode(num) {
+        token = num
     }

@@ -96,7 +96,7 @@
     <footer>
         <div class="btn" onclick="doCompute()">开始计算</div>
         <div class="separator"></div>
-        <div class="btn">新建订单</div>
+        <div class="btn" onclick="create()">新建订单</div>
     </footer>
 </body>
 <script src="js/jquery.js"></script>
@@ -154,45 +154,14 @@
 
     }
 
-    function jump() {
-        if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "https://itunes.apple.com/cn/app/id1434831876";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-
-        } else if (navigator.userAgent.match(/android/i)) {
-            let loadDateTime = new Date();
-            window.setTimeout(function () {
-                    let timeOutDateTime = new Date();
-                    if (timeOutDateTime - loadDateTime < 1100) {
-                        window.location = "http://47.105.75.125:8020/reg";
-                    } else {
-                        window.close();
-                    }
-                },
-                1000);
-
-            if (saleChannel == '1') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=4&id=" + id;
-            }
-            if (saleChannel == '2') {
-                window.location = "kuaimaiche://kuaimaiche.com?type=5&id=" + id;
-            }
-        }
+    function create(){
+        appCode.createOrder()
     }
+
+    $('.icon_back').click(function () {
+        window.location.href = `./onsale.html`
+    })
+
 </script>
 
 </html>
